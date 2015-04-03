@@ -32,7 +32,7 @@ public class ShiftUrl {
         String line;
         while ((line = in.readLine()) != null) {
             if (StringUtils.isBlank(line)) continue;
-            line = AT_COSME_URL_PATTERN.matcher(line).replaceFirst("$1$2");
+            line = URL_PATTERN.matcher(line).replaceFirst("$1$2");
             if (JPN_PATTERN.matcher(line).find()) continue;
             line = line.trim();
             String[] unCheck = line.split("\t");
@@ -47,7 +47,7 @@ public class ShiftUrl {
     private static String _input_path = "/tmp/input";
     private static String _output_path = "tmp/output";
     private static final String URL_REGEX = "http(s)?://[a-zA-Z0-9-=_.?/%#]+";
-    private static final Pattern AT_COSME_URL_PATTERN = Pattern.compile(String.format("(\t.*)(%s).*$", URL_REGEX));
+    private static final Pattern URL_PATTERN = Pattern.compile(String.format("(\t.*)(%s).*$", URL_REGEX));
     private static final Pattern JPN_PATTERN = Pattern.compile("[ぁ-んァ-ヶ一-龠々ー]");
 
     public static void main(String[] args) throws IOException {
